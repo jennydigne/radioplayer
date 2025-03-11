@@ -4,6 +4,16 @@ async function getChannels() {
 
     const channels = document.querySelector("#channels");
 
+    function setChannelColor(channelEl, hex) {
+        let r = parseInt(hex.substring(0, 2), 16);
+        let g = parseInt(hex.substring(2, 4), 16);
+        let b = parseInt(hex.substring(4, 6), 16);
+    
+        channelEl.style.setProperty("--channel-color-r", r);
+        channelEl.style.setProperty("--channel-color-g", g);
+        channelEl.style.setProperty("--channel-color-b", b);
+    }
+
     data.channels.forEach((channel) => {
         const channelEl = document.createElement("div");
         const channelImg = document.createElement("img")
@@ -20,7 +30,8 @@ async function getChannels() {
 
         channelImg.src = channel.image;
         channelTitle.innerHTML = channel.name;
-        channelEl.style.backgroundColor = `#${channel.color}`;
+        channelEl.style.setProperty("--channel-color", `#${channel.color}`);
+        setChannelColor(channelEl, channel.color);
         audioEl.controls = true;
         sourceEl.src = channel.liveaudio.url;
         sourceEl.type = "audio/mpeg";
