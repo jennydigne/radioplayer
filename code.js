@@ -1,5 +1,5 @@
 async function getChannels() {
-    const response = await fetch("http://api.sr.se/api/v2/channels?format=json");
+    const response = await fetch("https://api.sr.se/api/v2/channels?format=json");
     const data = await response.json();
 
     const channels = document.querySelector("#channels");
